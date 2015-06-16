@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/javascript" src="chrome://cwh/content/wizard-overlay.js" />
+	<script type="application/javascript" src="chrome://cwh/content/post-overlay.js" />
+
+	<hbox id="toolbox">
+		<checkbox id="p2Check" label="p2" oncommand="FormPage.toggleP2Login()" position="2" />
+	</hbox>
+
+</overlay>

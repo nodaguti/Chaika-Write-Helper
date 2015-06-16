@@ -1,0 +1,5 @@
+content cwh content/
+overlay chrome://browser/content/browser.xul chrome://cwh/content/browser-overlay.xul
+overlay chrome://chaika/content/post/wizard.xul chrome://cwh/content/wizard-overlay.xul
+skin cwh classic/1.0 skin/classic/
+resource cwh modules/

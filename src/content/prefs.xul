@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mozapps/content/preferences/preferences.css"?>
+<?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css"?>
+
+<prefwindow id="cwhPrefs"
+            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+            windowtype="Chaika Write Helper:Options"
+            title="Chaika Write Helper - Settings"
+            buttons="accept,cancel"
+            style="min-width: 38em;">
+
+	<script type="application/javascript">
+	<![CDATA[
+	Components.utils.import("resource://chaika-modules/ChaikaCore.js");
+
+	function openAAFolder(){
+		var aaDir = ChaikaCore.getDataDir();
+		aaDir.appendRelativePath("AA");
+		aaDir.launch();
+	}
+	//]]>
+	</script>
+
+	<prefpane id="pane1" label="設定" flex="1">
+		<preferences>
+			<preference id="extensions.chaika.login.p2.login_url" name="extensions.chaika.login.p2.login_url" type="string" />
+			<preference id="extensions.chaika.login.p2.post_url" name="extensions.chaika.login.p2.post_url" type="string" />
+			<preference id="extensions.chaika.login.p2.first_cont_url" name="extensions.chaika.login.p2.first_cont_url" type="string" />
+			<preference id="extensions.chaika.login.p2.csrfid_url" name="extensions.chaika.login.p2.csrfid_url" type="string" />
+			<preference id="extensions.chaika.login.p2.cookie_domain" name="extensions.chaika.login.p2.cookie_domain" type="string" />
+			<preference id="extensions.chaika.login.p2.id" name="extensions.chaika.login.p2.id" type="string" />
+			<preference id="extensions.chaika.login.p2.password" name="extensions.chaika.login.p2.password" type="string" />
+			<preference id="extensions.chaika.aa.show_context" name="extensions.chaika.aa.show_context" type="bool" />
+			<preference id="extensions.chaika.aa.show_context_only_2ch" name="extensions.chaika.aa.show_context_only_2ch" type="bool" />
+			<preference id="extensions.chaika.aa.confirm_before_save" name="extensions.chaika.aa.confirm_before_save" type="bool" />
+			<preference id="extensions.chaika.aa.create_and_save" name="extensions.chaika.aa.create_and_save" type="bool" />
+			<preference id="extensions.chaika.aa.replace_file" name="extensions.chaika.aa.replace_file" type="int" />
+		</preferences>
+
+		<groupbox>
+			<caption label="p2.2ch.net/rep2" />
+			<hbox>
+				<label value="ログイン先URL" />
+				<textbox id="login_url" preference="extensions.chaika.login.p2.login_url" flex="1" />
+			</hbox>
+			<hbox>
+				<label value="ログイン後説明部分URL" />
+				<textbox id="first_cont_url" preference="extensions.chaika.login.p2.first_cont_url" flex="1" />
+			</hbox>
+			<hbox>
+				<label value="投稿先URL" />
+				<textbox id="post_url" preference="extensions.chaika.login.p2.post_url" flex="1" />
+			</hbox>
+			<hbox>
+				<label value="投稿画面URL" />
+				<textbox id="csrfid_url" preference="extensions.chaika.login.p2.csrfid_url" flex="1" />
+			</hbox>
+			<hbox>
+				<label value="クッキードメイン" />
+				<textbox id="cookie_domain" preference="extensions.chaika.login.p2.cookie_domain" flex="1" />
+			</hbox>
+		</groupbox>
+
+		<groupbox>
+			<caption label="アカウント" />
+			<hbox>
+				<label value="メールアドレス" />
+				<textbox id="mail" preference="extensions.chaika.login.p2.id" flex="1" />
+			</hbox>
+			<hbox>
+				<label value="パスワード" />
+				<textbox id="password" preference="extensions.chaika.login.p2.password" type="password" flex="1" />
+			</hbox>
+		</groupbox>
+
+		<groupbox>
+			<caption label="AA挿入" />
+			<vbox>
+				<checkbox id="show_context" preference="extensions.chaika.aa.show_context" label="「AAを追加する」をコンテキストメニューに追加する" />
+				<checkbox id="show_context_only2ch" preference="extensions.chaika.aa.show_context_only_2ch"
+							label="Chaika上でのみコンテキストメニューに表示する" />
+				<checkbox id="confirm_before_save" preference="extensions.chaika.aa.confirm_before_save" label="AAを保存する前に確認する"
+							tooltiptext="一行AAの保存を途中で中止したい場合はチェックを外して下さい.また,フォルダ作成時はチェックに関わらず確認しません" />
+				<checkbox id="create_and_save" preference="extensions.chaika.aa.create_and_save" label="フォルダを作成と同時にAAを保存する" 
+							tooltiptext="一度に2つ以上のフォルダを作成したい場合,空のフォルダを作成したい場合はチェックを外して下さい" />
+			</vbox>
+			<hbox>
+				<label value="同名ファイルがあった場合は" />
+				<menulist sizetopopup="none" style="max-width: 20em;" preference="extensions.chaika.aa.replace_file">
+					<menupopup>
+						<menuitem label="上書きする" value="0" />
+						<menuitem label="末尾に番号を付加する" value="1" />
+						<menuitem label="処理を中止する" value="2" />
+						<menuitem label="毎回確認する" value="3" />
+					</menupopup>
+				</menulist>
+			</hbox>
+			<hbox>
+				<button label="AAフォルダを開く" oncommand="openAAFolder();" style="width:12em;max-width:12em;" />
+				<button label="AAファイルについて" oncommand="openTab('http://d.hatena.ne.jp/fls/20090520/p1');" />
+			</hbox>
+		</groupbox>
+	</prefpane>
+</prefwindow>
